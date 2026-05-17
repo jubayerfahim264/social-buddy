@@ -54,66 +54,71 @@ const Post = () => {
     <>
       <div className="container">
         <div className="row my-3">
-          {post.map((post) => (
-            <div className="col-12 col-lg-4 col-md-6 my-2" key={post.id}>
-              <Card variant="outlined">
-                <Box sx={{ p: 2 }}>
-                  <Typography gutterBottom variant="h5" component="div">
-                    <span className="postTitle"> {post.title}</span>
-                  </Typography>
+          {post > 0
+            ? "Post is loading...."
+            : post.map((post) => (
+                <div className="col-12 col-lg-4 col-md-6 my-2" key={post.id}>
+                  <Card variant="outlined">
+                    <Box sx={{ p: 2 }}>
+                      <Typography gutterBottom variant="h5" component="div">
+                        <span className="postTitle"> {post.title}</span>
+                      </Typography>
 
-                  <Typography variant="body2" sx={{ color: "text.secondary" }}>
-                    <span className="postDesc">{post.body}</span>
-                  </Typography>
-                </Box>
-                <Divider />
-                <div className="icons">
-                  <button
-                    onClick={() => isLikedHandler(post.id)}
-                    disabled={likedPosts[post.id]}
-                    color={likedPosts[post.id] ? "primary" : "secondary"}>
-                    {likedPosts[post.id] ? (
-                      <ThumbUpIcon className="likedIcon" />
-                    ) : (
-                      <ThumbUpOutlinedIcon className="likeIcon" />
-                    )}
-                    <p>{likesCount[post.id] || 0} Likes</p>
-                  </button>
+                      <Typography
+                        variant="body2"
+                        sx={{ color: "text.secondary" }}>
+                        <span className="postDesc">{post.body}</span>
+                      </Typography>
+                    </Box>
+                    <Divider />
+                    <div className="icons">
+                      <button
+                        onClick={() => isLikedHandler(post.id)}
+                        disabled={likedPosts[post.id]}
+                        color={likedPosts[post.id] ? "primary" : "secondary"}>
+                        {likedPosts[post.id] ? (
+                          <ThumbUpIcon className="likedIcon" />
+                        ) : (
+                          <ThumbUpOutlinedIcon className="likeIcon" />
+                        )}
+                        <p>{likesCount[post.id] || 0} Likes</p>
+                      </button>
 
-                  <button>
-                    <AddCommentIcon
-                      className="commentIcon"
-                      onClick={handleOpen}
-                    />
-                    <p>
-                      {
-                        comments.filter((comment) => comment.postId === post.id)
-                          .length
-                      }{" "}
-                      Comments
-                    </p>
-                  </button>
-                  <button>
-                    <ShareOutlined className="shareIcon" />
-                    <p>50K Share</p>
-                  </button>
+                      <button>
+                        <AddCommentIcon
+                          className="commentIcon"
+                          onClick={handleOpen}
+                        />
+                        <p>
+                          {
+                            comments.filter(
+                              (comment) => comment.postId === post.id,
+                            ).length
+                          }{" "}
+                          Comments
+                        </p>
+                      </button>
+                      <button>
+                        <ShareOutlined className="shareIcon" />
+                        <p>50K Share</p>
+                      </button>
+                    </div>
+                    <Box sx={{ p: 2 }}>
+                      <Link
+                        to={`/post/${post.id}`}
+                        style={{ textDecoration: "none", color: "inherit" }}>
+                        <Button
+                          variant="outlined"
+                          size="lg"
+                          fullWidth
+                          className="postBtn">
+                          Read More
+                        </Button>
+                      </Link>
+                    </Box>
+                  </Card>
                 </div>
-                <Box sx={{ p: 2 }}>
-                  <Link
-                    to={`/post/${post.id}`}
-                    style={{ textDecoration: "none", color: "inherit" }}>
-                    <Button
-                      variant="outlined"
-                      size="lg"
-                      fullWidth
-                      className="postBtn">
-                      Read More
-                    </Button>
-                  </Link>
-                </Box>
-              </Card>
-            </div>
-          ))}
+              ))}
         </div>
       </div>
       <AddComments handleClose={handleClose} open={open} />
