@@ -12,16 +12,35 @@
     color: #002926;
     font-family: 'Josefin Sans', sans-serif;
 }
-.postBtn{
-    background-color: #00786F !important;
-    color: #fff !important;
-    border: none !important;
+
+.postBtn {
     padding: 10px 20px !important;
-    border-radius: 5px !important;
     cursor: pointer !important;
     font-family: 'Josefin Sans', sans-serif !important;
     transition: background-color 0.3s ease !important;
 }
-.postBtn:hover{
-    background-color: #09677a !important;
+
+.postBtn:hover {
+    background-color: #00786F !important;
+    color: #ffffff !important;
+    border: none !important;
+}
+
+.icons {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 20px;
+}
+
+.likeIcon,
+.commentIcon,
+.shareIcon {
+    color: #575757;
+    cursor: pointer;
+}
+.likedIcon {
+    color: #0370ff;
+    cursor: pointer;
 }
